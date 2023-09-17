@@ -1,0 +1,22 @@
+{
+    "name": "hexlet/code",
+    "description": "my project",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        }
+    },
+    "bin": [
+        "bin/gendiff"
+    ],
+    "authors": [
+        {
+            "name": "albern79"
+        }
+    ],
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
+}
