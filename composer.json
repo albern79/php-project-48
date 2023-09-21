@@ -4,6 +4,7 @@
     "type": "project",
     "license": "MIT",
     "autoload": {
+        "files": ["src/Differ.php"],
         "psr-4": {
             "Hexlet\\Code\\": "src/"
         }
