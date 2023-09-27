@@ -17,6 +17,6 @@ jobs:
       - name: run install
         run: composer install
       - name: Run linter
-        run: composer exec --verbose phpcs -- --standard=PSR12
+        run: composer exec --verbose phpcs -- --standard=PSR12 src bin
       - name: Run tests
         run: composer exec --verbose phpunit tests
