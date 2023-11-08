@@ -77,7 +77,7 @@ function getTree($before, $after)
     return $tree;
 }
 
-function getTreePlane($before, $after)
+/*function getTreePlane($before, $after)
 {
     $tempResult = [];
     foreach ($before as $key => $value) {
@@ -113,3 +113,4 @@ function getTreePlane($before, $after)
     $finalResult = "{" . "\n" . implode("\n", $tempResult) . "\n" . "}";
     return $finalResult;
 }
+*/
