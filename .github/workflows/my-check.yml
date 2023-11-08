@@ -4,19 +4,21 @@
 ##########################################################################
 name: my-check
 on:
-  push:
-    branches:
-      - '**'
-    tags:
-      - '**'
+  - push
+  - pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          # Specify the PHP version
+          php-version: '8.1.2'
       - name: run install
-        run: composer install
+        run: make install
       - name: Run linter
-        run: composer exec --verbose phpcs -- --standard=PSR12 src bin
+        run: make lint
       - name: Run tests
         run: composer exec --verbose phpunit tests
