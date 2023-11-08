@@ -18,7 +18,6 @@ use Symfony\Component\Yaml\Yaml;
 }
 */
 
-
 function parse(array $dataFile)
 {
     ['extension' => $extension, 'data' => $data] = $dataFile;
@@ -32,4 +31,3 @@ function parse(array $dataFile)
             throw new \Exception("Extension {$extension} not supported!");
     }
 }
-

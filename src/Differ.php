@@ -8,12 +8,9 @@ use function Differ\Formatters\format;
 
 function genDiff(string $pathToFileBefore, string $pathToFileAfter, string $format = 'stylish'): string
 {
-    
     $data1 = parse(getDataPath($pathToFileBefore));
-    $data2 = parse(getDataPath($pathToFileAfter));  
-    
+    $data2 = parse(getDataPath($pathToFileAfter));
     $tree = getTree($data1, $data2);
-
     return format($format, $tree);
 }
 
@@ -30,7 +27,6 @@ function getDataPath(string $pathToFile): array
 
 function getTree($before, $after)
 {
-    
     $keys1 = array_keys(get_object_vars($before));
     $keys2 = array_keys(get_object_vars($after));
     $keys = array_unique(array_merge($keys1, $keys2));
@@ -76,41 +72,3 @@ function getTree($before, $after)
     }, $sortedUnicKey);
     return $tree;
 }
-
-/*function getTreePlane($before, $after)
-{
-    $tempResult = [];
-    foreach ($before as $key => $value) {
-        if ($value === false) {
-            $value = "false";
-        }
-        if (array_key_exists($key, $after)) {
-            if ($value === $after[$key]) {
-                $tempResult[] = "   " . $key . ': ' . $value;
-            } else {
-                $tempResult[] = " - " . $key . ': ' . $value;
-                $tempResult[] = " + " . $key . ': ' . $after[$key];
-            }
-        } else {
-            $tempResult[] = " - " . $key . ': ' . $value;
-        }
-    }
-
-    $diffKeyData2 = array_diff_key($after, $data);
-    foreach ($diffKeyData2 as $key => $value) {
-        if ($value === true) {
-            $value = "true";
-        }
-        $tempResult[] = " + " . $key . ': ' . $value;
-    }
-
-    usort($tempResult, function ($a, $b) {
-        return substr($a, 3, 1) <=> substr($b, 3, 1);
-    });
-
-
-    $tempResult = str_replace("'", '', $tempResult);
-    $finalResult = "{" . "\n" . implode("\n", $tempResult) . "\n" . "}";
-    return $finalResult;
-}
-*/

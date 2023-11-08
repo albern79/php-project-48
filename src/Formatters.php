@@ -7,11 +7,11 @@ function format(string $format, array $tree): string
     var_dump($tree);
     switch ($format) {
         case 'plane':
-        case 'json' :
+        case 'json':
             return Json\render($tree);
-        case 'yaml' :
+        case 'yaml':
         default:
-            throw new \Exception('not format');   
+            throw new \Exception('not format');
     }
     return 'hello';
 }
