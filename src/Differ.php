@@ -2,30 +2,101 @@
 
 namespace Differ\Differ;
 
-function genDiff($pathToFile1, $pathToFile2, $format)
+use function Differ\Parsers\parse;
+use function Funct\Collection\sortBy;
+use function Differ\Formatters\format;
+
+function genDiff(string $pathToFileBefore, string $pathToFileAfter, string $format = 'stylish'): string
 {
-    $file1 = file_get_contents($pathToFile1, true);
-    $file2 = file_get_contents($pathToFile2, true);
-    $data = (json_decode($file1, JSON_OBJECT_AS_ARRAY));
-    $data2 = (json_decode($file2, true));
+    
+    $data1 = parse(getDataPath($pathToFileBefore));
+    $data2 = parse(getDataPath($pathToFileAfter));  
+    
+    $tree = getTree($data1, $data2);
+
+    return format($format, $tree);
+}
+
+function getDataPath(string $pathToFile): array
+{
+    if (file_exists($pathToFile)) {
+        $extension = strtolower(pathinfo($pathToFile, PATHINFO_EXTENSION));
+        $data = file_get_contents($pathToFile, true);
+        return ['extension' => $extension, 'data' => $data];
+    } else {
+        throw new \Exception("No File");
+    }
+}
+
+function getTree($before, $after)
+{
+    
+    $keys1 = array_keys(get_object_vars($before));
+    $keys2 = array_keys(get_object_vars($after));
+    $keys = array_unique(array_merge($keys1, $keys2));
+    $sortedUnicKey = array_values(sortBy($keys, function ($key) {
+        return $key;
+    }));
+
+    $tree = array_map(function ($key) use ($before, $after) {
+        if (! property_exists($after, $key)) {
+            return [
+                'name' => $key,
+                'type' => 'removed',
+                'value' => $before->$key
+            ];
+        }
+        if (! property_exists($before, $key)) {
+            return [
+                'name' => $key,
+                'type' => 'added',
+                'value' => $after->$key
+            ];
+        }
+        if (is_object($before->$key) && is_object($after->$key)) {
+            return [
+                'name' => $key,
+                'type' => 'nested',
+                'children' => getTree($before->$key, $after->$key)
+            ];
+        }
+        if ($before->$key !== $after->$key) {
+            return [
+                'name' => $key,
+                'type' => 'changed',
+                'valueBefore' => $before->$key,
+                'valueAfter' => $after->$key
+            ];
+        }
+            return [
+                'name' => $key,
+                'type' => 'unchanged',
+                'value' => $before->$key
+            ];
+    }, $sortedUnicKey);
+    return $tree;
+}
+
+function getTreePlane($before, $after)
+{
     $tempResult = [];
-    foreach ($data as $key => $value) {
+    foreach ($before as $key => $value) {
         if ($value === false) {
             $value = "false";
         }
-        if (array_key_exists($key, $data2)) {
-            if ($value === $data2[$key]) {
+        if (array_key_exists($key, $after)) {
+            if ($value === $after[$key]) {
                 $tempResult[] = "   " . $key . ': ' . $value;
             } else {
                 $tempResult[] = " - " . $key . ': ' . $value;
-                $tempResult[] = " + " . $key . ': ' . $data2[$key];
+                $tempResult[] = " + " . $key . ': ' . $after[$key];
             }
         } else {
             $tempResult[] = " - " . $key . ': ' . $value;
         }
     }
 
-    $diffKeyData2 = array_diff_key($data2, $data);
+    $diffKeyData2 = array_diff_key($after, $data);
     foreach ($diffKeyData2 as $key => $value) {
         if ($value === true) {
             $value = "true";

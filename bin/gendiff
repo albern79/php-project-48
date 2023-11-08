@@ -31,7 +31,6 @@ $format = $args['--format'] ?? 'stylish';
 // var_dump($format);
 $firstFilePath = realpath($args['<firstFile>']);
 $secondFilePath = realpath($args['<secondFile>']);
-print_r($secondFilePath);
 if (!$firstFilePath or !$secondFilePath) {
     echo "Something is wrong with the given paths!" . PHP_EOL;
 } else {
