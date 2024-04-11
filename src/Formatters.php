@@ -13,6 +13,6 @@ function format(string $format, array $tree): string
         case 'stylish':
             return Stylish\render($tree);
         default:
-            throw new \Exception('not format');
+            throw new \Exception('NO format');
     }
 }
