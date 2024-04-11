@@ -14,3 +14,6 @@ gendiff: #запустить программ
 
 test: # запустить тест
 	composer exec --verbose phpunit tests
+
+report:
+	./bin/gendiff jacocoTestReport
