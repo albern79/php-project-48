@@ -36,4 +36,4 @@ if (!$firstFilePath or !$secondFilePath) {
 } else {
     $finalResult = genDiff($firstFilePath, $secondFilePath, $format);
 }
-print_r("\n" . $finalResult);
+print_r($finalResult);

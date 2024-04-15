@@ -4,7 +4,6 @@ namespace Differ\Formatters;
 
 function format(string $format, array $tree): string
 {
-    var_dump($format);
     switch ($format) {
         case 'plain':
             return Plain\render($tree);

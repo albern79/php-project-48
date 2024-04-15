@@ -16,4 +16,4 @@ test: # запустить тест
 	composer exec --verbose phpunit tests
 
 report:
-	./bin/gendiff jacocoTestReport
+	XDEBUG_MODE=coverage composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
