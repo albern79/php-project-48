@@ -16,4 +16,4 @@ test: # запустить тест
 	composer exec --verbose phpunit tests
 
 report:
-	XDEBUG_MODE=coverage composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
+	composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
