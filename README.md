@@ -1,11 +1,24 @@
-## Вычислитель отличий
+# Вычислитель отличий
 
 ### Описание проекта
-Вычислитель отличий – программа, определяющая разницу между двумя структурами данных. 
+Вычислитель отличий – программа, определяющая разницу между двумя структурами данных.
+
+### Возможности утилиты:
+
+    Поддержка разных входных форматов: yaml и json
+    Генерация отчета в виде plain text, stylish и json
 
 ### Сравнение плоских файлов (JSON)
-[![asciicast](https://asciinema.org/a/V9VMDjpYfkDehdQDNmsgx3B7b.svg)]https://asciinema.org/a/V9VMDjpYfkDehdQDNmsgx3B7b
+[![asciicast](https://asciinema.org/a/V9VMDjpYfkDehdQDNmsgx3B7b.svg)](https://asciinema.org/a/V9VMDjpYfkDehdQDNmsgx3B7b)
 
+### Сравнение плоских файлов (yaml)
+[![asciicast](https://asciinema.org/a/Bvqj5Il15AYtMqdJ1QVaBd519.svg)](https://asciinema.org/a/Bvqj5Il15AYtMqdJ1QVaBd519)
+
+### Рекурсивное сравнение
+[![asciicast](https://asciinema.org/a/002ShG7HFPoiOYUyIOvlgLtz8.svg)](https://asciinema.org/a/002ShG7HFPoiOYUyIOvlgLtz8)
+
+### Плоский формат
+[![asciicast](https://asciinema.org/a/4dp58UTk8KFlub5YvCu50yUKk.svg)](https://asciinema.org/a/4dp58UTk8KFlub5YvCu50yUKk)
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/albern79/php-project-48/workflows/hexlet-check/badge.svg)](https://github.com/albern79/php-project-48/actions)
