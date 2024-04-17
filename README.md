@@ -1,3 +1,12 @@
+## Вычислитель отличий
+
+### Описание проекта
+Вычислитель отличий – программа, определяющая разницу между двумя структурами данных. 
+
+### Сравнение плоских файлов (JSON)
+[![asciicast](https://asciinema.org/a/V9VMDjpYfkDehdQDNmsgx3B7b.svg)]https://asciinema.org/a/V9VMDjpYfkDehdQDNmsgx3B7b
+
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/albern79/php-project-48/workflows/hexlet-check/badge.svg)](https://github.com/albern79/php-project-48/actions)
 
