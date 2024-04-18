@@ -8,6 +8,14 @@
     Поддержка разных входных форматов: yaml и json
     Генерация отчета в виде plain text, stylish и json
 
+### Требования
+
+    ОС Linux и PHP не ниже 8 версии, Composer
+
+### Установка
+
+Для установки используется Makefile с командой make install , выполняющий команду composer install
+
 ### Сравнение плоских файлов (JSON)
 [![asciicast](https://asciinema.org/a/V9VMDjpYfkDehdQDNmsgx3B7b.svg)](https://asciinema.org/a/V9VMDjpYfkDehdQDNmsgx3B7b)
 
