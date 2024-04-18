@@ -19,7 +19,7 @@ class Test extends TestCase
         $jsonStylishFormat = rtrim(file_get_contents(__DIR__ . "/fixtures/testResult1.txt", 0, null, null), "\r\n");
         $shouldBe2 = rtrim(file_get_contents(__DIR__ . "/fixtures/testResult2.txt", 0, null, null), "\r\n");
         $yamlFormat = rtrim(file_get_contents(__DIR__ . "/fixtures/testYamlResult.txt", 0, null, null), "\r\n");
-        $PlainFormat= rtrim(file_get_contents(__DIR__ . "/fixtures/testPlainResult.txt", 0, null, null), "\r\n");
+        $PlainFormat = rtrim(file_get_contents(__DIR__ . "/fixtures/testPlainResult.txt", 0, null, null), "\r\n");
         $this->assertEquals($jsonStylishFormat, gendiff($t1path1, $t1path2, 'stylish'));
         $this->assertEquals($shouldBe2, gendiff($t2path3, $t2path4, 'stylish'));
         $this->assertEquals($yamlFormat, gendiff($yamlPath1, $yamlPath2, 'stylish'));
