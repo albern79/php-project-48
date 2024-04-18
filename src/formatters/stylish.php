@@ -12,7 +12,7 @@ function toString(mixed $value, int $depth = 1)
 {
     if (is_object($value)) {
         $encodeValue = json_encode($value);
-        $arrayValue = json_decode($encodeValue, true);
+        $arrayValue = json_decode((string)$encodeValue, true);
         return stringify($arrayValue, $depth);
     }
     if (is_null($value)) {
