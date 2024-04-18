@@ -3,7 +3,8 @@
 namespace Differ\Differ;
 
 use function Differ\Parsers\parse;
-use function Funct\Collection\sortBy;
+//use function Funct\Collection\sortBy;
+use function Functional\sort;
 use function Differ\Formatters\format;
 
 function genDiff(string $pathToFileBefore, string $pathToFileAfter, string $format = 'stylish'): string
@@ -30,9 +31,7 @@ function getTree($before, $after)
     $keys1 = array_keys(get_object_vars($before));
     $keys2 = array_keys(get_object_vars($after));
     $keys = array_unique(array_merge($keys1, $keys2));
-    $sortedUnicKey = array_values(sortBy($keys, function ($key) {
-        return $key;
-    }));
+    $sortedUnicKey = array_values(sort($keys, fn ($left, $right) => strcmp($left, $right)));
 
     $tree = array_map(function ($key) use ($before, $after) {
         if (! property_exists($after, $key)) {
