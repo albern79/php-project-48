@@ -26,7 +26,7 @@ function getDataPath(string $pathToFile): array
     }
 }
 
-function getTree($before, $after)
+function getTree(object $before, object $after): array
 {
     $keys1 = array_keys(get_object_vars($before));
     $keys2 = array_keys(get_object_vars($after));

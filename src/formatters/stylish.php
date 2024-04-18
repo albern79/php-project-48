@@ -8,10 +8,11 @@ function render(array $tree): string
     return $strTree;
 }
 
-function toString($value, $depth = 1)
+function toString(mixed $value, int $depth = 1)
 {
     if (is_object($value)) {
-        $arrayValue = json_decode((json_encode($value)), true);
+        $encodeValue = json_encode($value);
+        $arrayValue = json_decode($encodeValue, true);
         return stringify($arrayValue, $depth);
     }
     if (is_null($value)) {
@@ -21,7 +22,7 @@ function toString($value, $depth = 1)
     return trim(var_export($value, true), "'");
 }
 
-function stylish($value, string $replacer = ' ', int $spacesCount = 4): string
+function stylish(array $value, string $replacer = ' ', int $spacesCount = 4): string
 {
     $iter = function ($currentValue, $depth) use (&$iter, $replacer, $spacesCount) {
         if (!is_array($currentValue)) {
@@ -66,7 +67,7 @@ function stylish($value, string $replacer = ' ', int $spacesCount = 4): string
     return $iter($value, 1);
 }
 
-function stringify($value, int $d, int $spacesCount = 4, string $replacer = ' '): string
+function stringify(array $value, int $subdepth, int $spacesCount = 4, string $replacer = ' '): string
 {
     $iter = function ($currentValue, $depth) use (&$iter, $replacer, $spacesCount) {
         if (!is_array($currentValue)) {
@@ -87,5 +88,5 @@ function stringify($value, int $d, int $spacesCount = 4, string $replacer = ' ')
         return implode("\n", $result);
     };
 
-    return $iter($value, $d);
+    return $iter($value, $subdepth);
 }
