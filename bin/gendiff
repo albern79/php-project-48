@@ -31,9 +31,9 @@ $format = $args['--format'] ?? 'stylish';
 // var_dump($format);
 $firstFilePath = realpath($args['<firstFile>']);
 $secondFilePath = realpath($args['<secondFile>']);
-if (!$firstFilePath or !$secondFilePath) {
-    echo "Something is wrong with the given paths!" . PHP_EOL;
+if (!$firstFilePath || !$secondFilePath) {
+    print_r('Something is wrong with the given paths!');
 } else {
     $finalResult = genDiff($firstFilePath, $secondFilePath, $format);
 }
-print_r("\n" . $finalResult);
+print_r($finalResult);
