@@ -7,7 +7,7 @@ function render(array $tree): string
     return implode("\n", buildPlain($tree));
 }
 
-function stringify($value): string
+function stringify(mixed $value): string
 {
     if (is_null($value)) {
         return 'null';
